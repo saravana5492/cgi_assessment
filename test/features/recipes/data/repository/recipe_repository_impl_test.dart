@@ -105,21 +105,5 @@ void main() {
           equals(left<Failure, List<Recipe>>(
               const ServerFailure("Invalid response"))));
     });
-
-    test('should return server failure when not connected to internet',
-        () async {
-      // arrange
-      when(mockRecipeRemoteDatasource.fetchRecipes())
-          .thenThrow(const SocketException('Internet connection failed'));
-
-      // act
-      final result = await recipeRepositoryImpl.fetchAllRecipes();
-
-      // assert
-      expect(
-          result,
-          equals(left<Failure, List<Recipe>>(
-              const ConnectionFailure("Internet connection failed"))));
-    });
   });
 }

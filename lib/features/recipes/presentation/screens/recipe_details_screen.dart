@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cgi_assessment/core/utils/array_to_string.dart';
 import 'package:cgi_assessment/features/recipes/domain/entity/recipe.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +36,14 @@ class RecipeDetailsScreen extends StatelessWidget {
                 height: 250,
               ),
               const SizedBox(height: 12),
-              Text(
-                  "⏰ Prep: ${recipe.prepTimeMinutes} mins  |  Cook: ${recipe.cookTimeMinutes} mins"),
+              Row(
+                children: [
+                  const Text("⏰ "),
+                  Text("Prep: ${recipe.prepTimeMinutes} mins"),
+                  const Text("  |  "),
+                  Text("Cook: ${recipe.cookTimeMinutes} mins"),
+                ],
+              ),
               const SizedBox(height: 12),
               Wrap(
                 children: recipe.tags
@@ -55,19 +62,21 @@ class RecipeDetailsScreen extends StatelessWidget {
               const Text("🥗 Ingredients:",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
-              Text(recipe.ingredients.join(", ")),
+              Text(arrayToString(recipe.ingredients, ", ")),
               const SizedBox(height: 20),
-              Text(
-                "🥙 Calories: ${recipe.caloriesPerServing} cals  |  Cuisine: ${recipe.cuisine}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  const Text("🥙 "),
+                  Text("Calories: ${recipe.caloriesPerServing} cals"),
+                  const Text("  |  "),
+                  Text("Cuisine: ${recipe.cuisine}"),
+                ],
               ),
               const SizedBox(height: 20),
               const Text("📜 Instructions:",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
-              Text(recipe.instructions.join("\n")),
+              Text(arrayToString(recipe.instructions, "\n")),
             ],
           ),
         ),

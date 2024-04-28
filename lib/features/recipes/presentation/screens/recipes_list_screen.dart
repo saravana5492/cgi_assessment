@@ -52,12 +52,7 @@ class _RecipesListScreenState extends State<RecipesListScreen> {
             );
           }
 
-          return const Center(
-            child: Text(
-              key: Key('no-recipe'),
-              "No Recipes Found.",
-            ),
-          );
+          return Container();
         },
       ),
     );
